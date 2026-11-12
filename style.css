@@ -1162,9 +1162,9 @@ button {
 
 .social-cards-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.8rem;
-  max-width: 900px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
@@ -1172,7 +1172,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.8rem 2rem;
+  padding: 1.8rem 1.8rem;
   border-radius: var(--radius-xl);
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -1197,6 +1197,10 @@ button {
 
 .social-profile-card.linkedin::before {
   background: #0ea5e9;
+}
+
+.social-profile-card.email::before {
+  background: #f43f5e;
 }
 
 .social-profile-card:hover {
@@ -1364,11 +1368,48 @@ button {
   text-overflow: ellipsis;
 }
 
-.editable-hint {
-  font-size: 0.74rem;
-  color: var(--accent-purple-light);
-  display: inline-block;
-  margin-top: 0.15rem;
+.contact-email-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-email-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-email-send {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  border: 1px solid transparent;
+}
+
+.btn-email-send:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+.btn-email-copy {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.btn-email-copy:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
 }
 
 .contact-form-card {
@@ -1560,6 +1601,9 @@ button {
   }
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+  .social-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

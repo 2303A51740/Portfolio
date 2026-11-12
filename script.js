@@ -1,7 +1,17 @@
 /**
  * Developer Portfolio - Gullapudi Bhargava Subrahmanyam Guptha
  * Pure Vanilla JavaScript (Zero Dependencies, Zero Build Tools)
+ * 
+ * ============================================================================
+ * CONFIGURATION - EASILY EDITABLE CONTACT DETAILS
+ * Change the email address below to update it across all scripts & form actions.
+ * ============================================================================
  */
+const CONTACT_CONFIG = {
+  email: 'gbsgupth2006@gmail.com',
+  github: 'https://github.com/2303A51740',
+  linkedin: 'https://www.linkedin.com/in/gullapudi-bhargav-guptha-1aab40347/'
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. DOM Elements
@@ -104,31 +114,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 5. Copy Email to Clipboard
+  // 5. Copy Email to Clipboard using JavaScript Clipboard API
   if (copyEmailBtn) {
     copyEmailBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      const emailText = document.getElementById('placeholder-email')?.textContent?.trim() || 'bhargav.guptha@example.com';
-      
-      navigator.clipboard.writeText(emailText).then(() => {
+      const emailToCopy = CONTACT_CONFIG.email;
+
+      navigator.clipboard.writeText(emailToCopy).then(() => {
         const btnText = copyEmailBtn.querySelector('.btn-copy-text');
         const originalText = btnText ? btnText.textContent : 'Copy';
         if (btnText) btnText.textContent = 'Copied!';
+        copyEmailBtn.classList.add('copied');
         copyEmailBtn.style.borderColor = '#10b981';
         copyEmailBtn.style.color = '#34d399';
 
         setTimeout(() => {
           if (btnText) btnText.textContent = originalText;
+          copyEmailBtn.classList.remove('copied');
           copyEmailBtn.style.borderColor = '';
           copyEmailBtn.style.color = '';
         }, 2200);
       }).catch((err) => {
-        console.error('Could not copy text: ', err);
+        console.error('Could not copy email: ', err);
+        // Fallback for older environments
+        const textArea = document.createElement('textarea');
+        textArea.value = emailToCopy;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          const btnText = copyEmailBtn.querySelector('.btn-copy-text');
+          if (btnText) btnText.textContent = 'Copied!';
+          setTimeout(() => {
+            if (btnText) btnText.textContent = 'Copy';
+          }, 2200);
+        } catch (fallbackErr) {
+          console.error('Fallback copy failed: ', fallbackErr);
+        }
+        document.body.removeChild(textArea);
       });
     });
   }
 
-  // 6. Contact Form Submission (Mailto Integration)
+  // 6. Contact Form Submission (Direct Mailto Integration)
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -136,9 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = document.getElementById('email')?.value || '';
       const subject = document.getElementById('subject')?.value || 'Portfolio Inquiry';
       const message = document.getElementById('message')?.value || '';
-      const recipientEmail = document.getElementById('placeholder-email')?.textContent?.trim() || 'bhargav.guptha@example.com';
 
-      const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(
+      const mailtoUrl = `mailto:${CONTACT_CONFIG.email}?subject=${encodeURIComponent(
         subject
       )}&body=${encodeURIComponent(
         `From: ${name} (${email})\n\nMessage:\n${message}`
@@ -165,4 +192,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-

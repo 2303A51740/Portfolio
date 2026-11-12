@@ -83,13 +83,14 @@ Portfolio/
 ### Social Media & Links
 - **GitHub**: [https://github.com/2303A51740](https://github.com/2303A51740)
 - **LinkedIn Profile**: [https://www.linkedin.com/in/gullapudi-bhargav-guptha-1aab40347/](https://www.linkedin.com/in/gullapudi-bhargav-guptha-1aab40347/)
-*(Kept strictly separate from the Zombie Runner gameplay video URL).*
+- **Email**: [gbsgupth2006@gmail.com](mailto:gbsgupth2006@gmail.com)
+*(LinkedIn profile is kept strictly separate from the Zombie Runner gameplay video URL).*
 
 ---
 
 ## ⚙️ Customizing Your Data
 
 To change your email address or any personal info:
-1. Open `index.html` in VS Code.
-2. Search for `bhargav.guptha@example.com` and replace it with your desired email address.
+1. Open `script.js` and edit `CONTACT_CONFIG.email`.
+2. In `index.html`, search for `gbsgupth2006@gmail.com` to customize any display labels.
 3. Save and push to your `main` branch. GitHub Pages will update automatically!
